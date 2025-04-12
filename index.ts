@@ -16,7 +16,7 @@ import * as qr from "./operations/qr.js";
 const server = new Server(
   {
     name: "web-development-toolbox-mcp-server",
-    version: "0.0.1",
+    version: "0.1.0",
   },
   {
     capabilities: {
