@@ -11,6 +11,7 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 import * as base64 from "./operations/base64.js";
 import * as color from "./operations/color.js";
 import * as datetime from "./operations/datetime.js";
+import * as qr from "./operations/qr.js";
 
 const server = new Server(
   {
@@ -56,6 +57,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         name: "iso_to_unix",
         description: "Convert an ISO 8601 string to Unix timestamp",
         inputSchema: zodToJsonSchema(datetime.ISOToUnixSchema),
+      },
+      {
+        name: "generate_qr_code",
+        description: "Generate a QR code from a given string",
+        inputSchema: zodToJsonSchema(qr.QRCodeGenerateSchema),
       },
     ],
   };
@@ -108,6 +114,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await datetime.isoToUnix(args);
         return {
           content: [{ type: "text", text: response.toString() }],
+        };
+      }
+      case "generate_qr_code": {
+        const args = qr.QRCodeGenerateSchema.parse(request.params.arguments);
+        const response = await qr.generateQRCode(args);
+        return {
+          content: [{ type: "image", data: response, mimeType: "image/png" }],
         };
       }
       default:
