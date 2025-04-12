@@ -10,6 +10,7 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 
 import * as base64 from "./operations/base64.js";
 import * as color from "./operations/color.js";
+import * as datetime from "./operations/datetime.js";
 
 const server = new Server(
   {
@@ -46,6 +47,16 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Convert RGB values to a hex color code",
         inputSchema: zodToJsonSchema(color.RGBToHexSchema),
       },
+      {
+        name: "unix_to_iso",
+        description: "Convert a Unix timestamp to ISO 8601 format",
+        inputSchema: zodToJsonSchema(datetime.UnixToISOSchema),
+      },
+      {
+        name: "iso_to_unix",
+        description: "Convert an ISO 8601 string to Unix timestamp",
+        inputSchema: zodToJsonSchema(datetime.ISOToUnixSchema),
+      },
     ],
   };
 });
@@ -58,18 +69,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     switch (request.params.name) {
       case "encode_base64": {
-        const args = base64.Base64EncodeSchema.parse(
-          request.params.arguments
-        );
+        const args = base64.Base64EncodeSchema.parse(request.params.arguments);
         const response = await base64.encodeBase64(args);
         return {
           content: [{ type: "text", text: response }],
         };
       }
       case "decode_base64": {
-        const args = base64.Base64DecodeSchema.parse(
-          request.params.arguments
-        );
+        const args = base64.Base64DecodeSchema.parse(request.params.arguments);
         const response = await base64.decodeBase64(args);
         return {
           content: [{ type: "text", text: response }],
@@ -87,6 +94,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await color.rgbToHex(args);
         return {
           content: [{ type: "text", text: response }],
+        };
+      }
+      case "unix_to_iso": {
+        const args = datetime.UnixToISOSchema.parse(request.params.arguments);
+        const response = await datetime.unixToISO(args);
+        return {
+          content: [{ type: "text", text: response }],
+        };
+      }
+      case "iso_to_unix": {
+        const args = datetime.ISOToUnixSchema.parse(request.params.arguments);
+        const response = await datetime.isoToUnix(args);
+        return {
+          content: [{ type: "text", text: response.toString() }],
         };
       }
       default:
