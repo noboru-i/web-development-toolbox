@@ -9,6 +9,7 @@ import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
 import * as base64 from "./operations/base64.js";
+import * as color from "./operations/color.js";
 
 const server = new Server(
   {
@@ -34,6 +35,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         name: "decode_base64",
         description: "Decode base64 encoded data",
         inputSchema: zodToJsonSchema(base64.Base64DecodeSchema),
+      },
+      {
+        name: "hex_to_rgb",
+        description: "Convert a hex color code to RGB format",
+        inputSchema: zodToJsonSchema(color.HexToRGBSchema),
       },
     ],
   };
@@ -62,6 +68,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await base64.decodeBase64(args);
         return {
           content: [{ type: "text", text: response }],
+        };
+      }
+      case "hex_to_rgb": {
+        const args = color.HexToRGBSchema.parse(request.params.arguments);
+        const response = await color.hexToRGB(args);
+        return {
+          content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
         };
       }
       default:

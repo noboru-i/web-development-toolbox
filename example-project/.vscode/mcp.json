@@ -1,0 +1,10 @@
+{
+    "servers": {
+        "web-development-toolbox": {
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/../dist/index.js"
+            ]
+        }
+    }
+}
