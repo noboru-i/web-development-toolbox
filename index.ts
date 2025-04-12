@@ -41,6 +41,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Convert a hex color code to RGB format",
         inputSchema: zodToJsonSchema(color.HexToRGBSchema),
       },
+      {
+        name: "rgb_to_hex",
+        description: "Convert RGB values to a hex color code",
+        inputSchema: zodToJsonSchema(color.RGBToHexSchema),
+      },
     ],
   };
 });
@@ -75,6 +80,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await color.hexToRGB(args);
         return {
           content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
+        };
+      }
+      case "rgb_to_hex": {
+        const args = color.RGBToHexSchema.parse(request.params.arguments);
+        const response = await color.rgbToHex(args);
+        return {
+          content: [{ type: "text", text: response }],
         };
       }
       default:
