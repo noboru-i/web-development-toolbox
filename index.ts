@@ -30,6 +30,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Encode data to base64 format",
         inputSchema: zodToJsonSchema(base64.Base64EncodeSchema),
       },
+      {
+        name: "decode_base64",
+        description: "Decode base64 encoded data",
+        inputSchema: zodToJsonSchema(base64.Base64DecodeSchema),
+      },
     ],
   };
 });
@@ -46,6 +51,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           request.params.arguments
         );
         const response = await base64.encodeBase64(args);
+        return {
+          content: [{ type: "text", text: response }],
+        };
+      }
+      case "decode_base64": {
+        const args = base64.Base64DecodeSchema.parse(
+          request.params.arguments
+        );
+        const response = await base64.decodeBase64(args);
         return {
           content: [{ type: "text", text: response }],
         };
