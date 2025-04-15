@@ -72,6 +72,14 @@ This server provides the following tools:
   - Input Schema:
     - `text`: Text to encode in the QR code (string, required)
 
+- **decode_jwt** - Decode a JWT token.
+  - Input Schema:
+    - `token`: JWT token string (string, required)
+  - Output Format:
+    - `header`: Decoded JWT header (object)
+    - `payload`: Decoded JWT payload (object)
+    - `signature`: JWT signature (string or null)
+
 ## License
 
 This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE) for the full terms.
