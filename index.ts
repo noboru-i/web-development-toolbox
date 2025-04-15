@@ -17,7 +17,7 @@ import { JWTDecodeOptions, decodeJWT } from "./operations/jwt.js";
 const server = new Server(
   {
     name: "web-development-toolbox-mcp-server",
-    version: "0.1.1",
+    version: "0.2.0",
   },
   {
     capabilities: {
