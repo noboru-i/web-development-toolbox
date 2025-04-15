@@ -16,5 +16,3 @@ export async function decodeJWT(params: z.infer<typeof JWTDecodeOptions>) {
     signature: signature ? signature : null,
   };
 }
-
-export { JWTDecodeOptions };
