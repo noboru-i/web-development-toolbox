@@ -36,49 +36,65 @@ Alternatively, you can create a `.vscode/mcp.json` file in your workspace to sha
 
 This server provides the following tools:
 
-- **encode_base64** - Encode data to base64 format.
+1. **encode_base64**
 
-  - Input Schema:
-    - `data`: Input string to encode (string, required)
+   - Encode data to base64 format
+   - Inputs:
+     - `data` (string): Input string to encode
+   - Returns: Base64 encoded string
 
-- **decode_base64** - Decode base64 encoded data.
+2. **decode_base64**
 
-  - Input Schema:
-    - `data`: Base64 encoded string to decode (string, required)
+   - Decode base64 encoded data
+   - Inputs:
+     - `data` (string): Base64 encoded string to decode
+   - Returns: Decoded string
 
-- **hex_to_rgb** - Convert a hex color code to RGB format.
+3. **hex_to_rgb**
 
-  - Input Schema:
-    - `hex`: Hexadecimal color code (string, required)
+   - Convert a hex color code to RGB format
+   - Inputs:
+     - `hex` (string): Hexadecimal color code
+   - Returns: Object containing RGB values (`r`, `g`, `b`)
 
-- **rgb_to_hex** - Convert RGB values to a hex color code.
+4. **rgb_to_hex**
 
-  - Input Schema:
-    - `r`: Red value (number, required)
-    - `g`: Green value (number, required)
-    - `b`: Blue value (number, required)
+   - Convert RGB values to a hex color code
+   - Inputs:
+     - `r` (number): Red value (0-255)
+     - `g` (number): Green value (0-255)
+     - `b` (number): Blue value (0-255)
+   - Returns: Hexadecimal color code
 
-- **unix_to_iso** - Convert a Unix timestamp to ISO 8601 format.
+5. **unix_to_iso**
 
-  - Input Schema:
-    - `timestamp`: Unix timestamp (number, required)
+   - Convert a Unix timestamp to ISO 8601 format
+   - Inputs:
+     - `datetime` (number): Unix timestamp
+   - Returns: ISO 8601 formatted string
 
-- **iso_to_unix** - Convert an ISO 8601 string to Unix timestamp.
+6. **iso_to_unix**
 
-  - Input Schema:
-    - `iso`: ISO 8601 formatted string (string, required)
+   - Convert an ISO 8601 string to Unix timestamp
+   - Inputs:
+     - `isoString` (string): ISO 8601 formatted string
+   - Returns: Unix timestamp
 
-- **generate_qr_code** - Generate a QR code from a given string.
-  - Input Schema:
-    - `text`: Text to encode in the QR code (string, required)
+7. **generate_qr_code**
 
-- **decode_jwt** - Decode a JWT token.
-  - Input Schema:
-    - `token`: JWT token string (string, required)
-  - Output Format:
-    - `header`: Decoded JWT header (object)
-    - `payload`: Decoded JWT payload (object)
-    - `signature`: JWT signature (string or null)
+   - Generate a QR code from a given string
+   - Inputs:
+     - `text` (string): Text to encode in the QR code
+   - Returns: QR code image (data URL)
+
+8. **decode_jwt**
+   - Decode a JWT token
+   - Inputs:
+     - `token` (string): JWT token string
+   - Returns:
+     - `header`: Decoded JWT header (object)
+     - `payload`: Decoded JWT payload (object)
+     - `signature`: JWT signature (string or null)
 
 ## License
 
