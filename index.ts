@@ -12,11 +12,12 @@ import * as base64 from "./operations/base64.js";
 import * as color from "./operations/color.js";
 import * as datetime from "./operations/datetime.js";
 import * as qr from "./operations/qr.js";
+import { JWTDecodeOptions, decodeJWT } from "./operations/jwt.js";
 
 const server = new Server(
   {
     name: "web-development-toolbox-mcp-server",
-    version: "0.1.1",
+    version: "0.2.0",
   },
   {
     capabilities: {
@@ -62,6 +63,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         name: "generate_qr_code",
         description: "Generate a QR code from a given string",
         inputSchema: zodToJsonSchema(qr.QRCodeGenerateSchema),
+      },
+      {
+        name: "decode_jwt",
+        description: "Decode a JWT token",
+        inputSchema: zodToJsonSchema(JWTDecodeOptions),
       },
     ],
   };
@@ -121,6 +127,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await qr.generateQRCode(args);
         return {
           content: [{ type: "image", data: response, mimeType: "image/png" }],
+        };
+      }
+      case "decode_jwt": {
+        const args = JWTDecodeOptions.parse(request.params.arguments);
+        const response = await decodeJWT(args);
+        return {
+          content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
         };
       }
       default:
