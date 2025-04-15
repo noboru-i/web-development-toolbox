@@ -72,6 +72,10 @@ This server provides the following tools:
   - Input Schema:
     - `text`: Text to encode in the QR code (string, required)
 
+- **decode_qr_code** - Decode a QR code image to extract text.
+  - Input Schema:
+    - `imageData`: Base64 encoded image data of the QR code (string, required)
+
 ## License
 
 This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE) for the full terms.
