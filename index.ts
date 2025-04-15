@@ -63,6 +63,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Generate a QR code from a given string",
         inputSchema: zodToJsonSchema(qr.QRCodeGenerateSchema),
       },
+      {
+        name: "decode_qr_code",
+        description: "Decode a QR code image to extract text",
+        inputSchema: zodToJsonSchema(qr.QRCodeDecodeSchema),
+      },
     ],
   };
 });
@@ -121,6 +126,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await qr.generateQRCode(args);
         return {
           content: [{ type: "image", data: response, mimeType: "image/png" }],
+        };
+      }
+      case "decode_qr_code": {
+        const args = qr.QRCodeDecodeSchema.parse(request.params.arguments);
+        const response = await qr.decodeQRCode(args);
+        return {
+          content: [{ type: "text", text: response }],
         };
       }
       default:
