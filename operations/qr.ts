@@ -2,6 +2,7 @@ import { z } from "zod";
 import qr from "qr-image";
 import { Readable } from "stream";
 import jsQR from "jsqr";
+import { PNG } from "pngjs";
 
 export const QRCodeGenerateSchema = z.object({
   text: z.string().min(1, "Text is required"),
@@ -27,19 +28,23 @@ export async function generateQRCode({
 }
 
 export const QRCodeDecodeSchema = z.object({
-  imageData: z.string().min(1, "Image data is required"),
+  base64image: z.string().min(1, "Base64 image is required"),
 });
 
 export async function decodeQRCode({
-  imageData,
+  base64image,
 }: z.infer<typeof QRCodeDecodeSchema>): Promise<string> {
   try {
-    const buffer = Buffer.from(imageData, "base64");
-    const uint8Array = new Uint8Array(buffer);
-    const image = jsQR(uint8Array, 256, 256); // Assuming the image is 256x256
+    const buffer = Buffer.from(base64image, "base64");
+    const png = PNG.sync.read(buffer);
+    const code = jsQR.default(
+      Uint8ClampedArray.from(png.data),
+      png.width,
+      png.height
+    );
 
-    if (image) {
-      return image.data;
+    if (code) {
+      return code.data;
     } else {
       throw new Error("Failed to decode QR Code");
     }
