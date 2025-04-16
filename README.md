@@ -96,6 +96,12 @@ This server provides the following tools:
      - `payload`: Decoded JWT payload (object)
      - `signature`: JWT signature (string or null)
 
+9. **generate_uuid**
+   - Generate a UUID
+   - Inputs:
+     - `version` (string): The version of UUID to generate (`v4` or `v7`)
+   - Returns: UUID string
+
 ## License
 
 This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE) for the full terms.

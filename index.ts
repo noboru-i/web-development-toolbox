@@ -13,6 +13,7 @@ import * as color from "./operations/color.js";
 import * as datetime from "./operations/datetime.js";
 import * as qr from "./operations/qr.js";
 import { JWTDecodeOptions, decodeJWT } from "./operations/jwt.js";
+import { UUIDGenerateSchema, generateUUID } from "./operations/uuid.js";
 
 const server = new Server(
   {
@@ -68,6 +69,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         name: "decode_jwt",
         description: "Decode a JWT token",
         inputSchema: zodToJsonSchema(JWTDecodeOptions),
+      },
+      {
+        name: "generate_uuid",
+        description: "Generate a UUID",
+        inputSchema: zodToJsonSchema(UUIDGenerateSchema),
       },
     ],
   };
@@ -134,6 +140,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await decodeJWT(args);
         return {
           content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
+        };
+      }
+      case "generate_uuid": {
+        const args = UUIDGenerateSchema.parse(request.params.arguments);
+        const response = await generateUUID(args);
+        return {
+          content: [{ type: "text", text: response }],
         };
       }
       default:
