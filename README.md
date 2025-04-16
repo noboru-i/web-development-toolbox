@@ -66,22 +66,22 @@ This server provides the following tools:
      - `b` (number): Blue value (0-255)
    - Returns: Hexadecimal color code
 
-5. **rgb_to_hue**
+5. **rgb_to_hsv**
 
-   - Convert RGB values to HUE
+   - Convert RGB values to HSV
    - Inputs:
      - `r` (number): Red value (0-255)
      - `g` (number): Green value (0-255)
      - `b` (number): Blue value (0-255)
-   - Returns: Object containing HUE values (`h`, `s`, `l`)
+   - Returns: Object containing HSV values (`h`, `s`, `v`)
 
-6. **hue_to_rgb**
+6. **hsv_to_rgb**
 
-   - Convert HUE values to RGB
+   - Convert HSV values to RGB
    - Inputs:
      - `h` (number): Hue value (0-360)
      - `s` (number): Saturation value (0-100)
-     - `l` (number): Lightness value (0-100)
+     - `v` (number): Value component (0-100)
    - Returns: Object containing RGB values (`r`, `g`, `b`)
 
 7. **unix_to_iso**

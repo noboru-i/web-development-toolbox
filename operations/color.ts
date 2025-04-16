@@ -47,17 +47,17 @@ export async function rgbToHex(
   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
-export const RGBToHUEOptions = z.object({
+export const RGBToHSVOptions = z.object({
   r: z.number().min(0).max(255).describe("The red component (0-255)"),
   g: z.number().min(0).max(255).describe("The green component (0-255)"),
   b: z.number().min(0).max(255).describe("The blue component (0-255)"),
 });
 
-export const RGBToHUESchema = RGBToHUEOptions;
+export const RGBToHSVSchema = RGBToHSVOptions;
 
-export async function rgbToHUE(
-  params: z.infer<typeof RGBToHUESchema>
-): Promise<{ h: number; s: number; l: number }> {
+export async function rgbToHSV(
+  params: z.infer<typeof RGBToHSVSchema>
+): Promise<{ h: number; s: number; v: number }> {
   const { r, g, b } = params;
   const rNorm = r / 255;
   const gNorm = g / 255;
@@ -69,10 +69,10 @@ export async function rgbToHUE(
 
   let h = 0;
   let s = 0;
-  let l = (max + min) / 2;
+  let v = max;
 
   if (delta !== 0) {
-    s = l > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+    s = delta / max;
 
     switch (max) {
       case rNorm:
@@ -89,55 +89,71 @@ export async function rgbToHUE(
     h /= 6;
   }
 
-  return { h: h * 360, s: s * 100, l: l * 100 };
+  return { h: h * 360, s: s * 100, v: v * 100 };
 }
 
-export const HUEToRGBOptions = z.object({
+export const HSVToRGBOptions = z.object({
   h: z.number().min(0).max(360).describe("The hue component (0-360)"),
   s: z.number().min(0).max(100).describe("The saturation component (0-100)"),
-  l: z.number().min(0).max(100).describe("The lightness component (0-100)"),
+  v: z.number().min(0).max(100).describe("The value component (0-100)"),
 });
 
-export const HUEToRGBSchema = HUEToRGBOptions;
+export const HSVToRGBSchema = HSVToRGBOptions;
 
-export async function hueToRGB(
-  params: z.infer<typeof HUEToRGBSchema>
+export async function hsvToRGB(
+  params: z.infer<typeof HSVToRGBSchema>
 ): Promise<{ r: number; g: number; b: number }> {
-  const { h, s, l } = params;
+  const { h, s, v } = params;
   const sNorm = s / 100;
-  const lNorm = l / 100;
+  const vNorm = v / 100;
+  const hNorm = h / 60;
 
-  const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
-  const x = c * (1 - Math.abs((h / 60) % 2 - 1));
-  const m = lNorm - c / 2;
+  const i = Math.floor(hNorm);
+  const f = hNorm - i;
+  const p = vNorm * (1 - sNorm);
+  const q = vNorm * (1 - sNorm * f);
+  const t = vNorm * (1 - sNorm * (1 - f));
 
   let rNorm = 0;
   let gNorm = 0;
   let bNorm = 0;
 
-  if (0 <= h && h < 60) {
-    rNorm = c;
-    gNorm = x;
-  } else if (60 <= h && h < 120) {
-    rNorm = x;
-    gNorm = c;
-  } else if (120 <= h && h < 180) {
-    gNorm = c;
-    bNorm = x;
-  } else if (180 <= h && h < 240) {
-    gNorm = x;
-    bNorm = c;
-  } else if (240 <= h && h < 300) {
-    rNorm = x;
-    bNorm = c;
-  } else if (300 <= h && h < 360) {
-    rNorm = c;
-    bNorm = x;
+  switch (i % 6) {
+    case 0:
+      rNorm = vNorm;
+      gNorm = t;
+      bNorm = p;
+      break;
+    case 1:
+      rNorm = q;
+      gNorm = vNorm;
+      bNorm = p;
+      break;
+    case 2:
+      rNorm = p;
+      gNorm = vNorm;
+      bNorm = t;
+      break;
+    case 3:
+      rNorm = p;
+      gNorm = q;
+      bNorm = vNorm;
+      break;
+    case 4:
+      rNorm = t;
+      gNorm = p;
+      bNorm = vNorm;
+      break;
+    case 5:
+      rNorm = vNorm;
+      gNorm = p;
+      bNorm = q;
+      break;
   }
 
   return {
-    r: Math.round((rNorm + m) * 255),
-    g: Math.round((gNorm + m) * 255),
-    b: Math.round((bNorm + m) * 255),
+    r: Math.round(rNorm * 255),
+    g: Math.round(gNorm * 255),
+    b: Math.round(bNorm * 255),
   };
 }

@@ -51,14 +51,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: zodToJsonSchema(color.RGBToHexSchema),
       },
       {
-        name: "rgb_to_hue",
-        description: "Convert RGB values to HUE",
-        inputSchema: zodToJsonSchema(color.RGBToHUESchema),
+        name: "rgb_to_hsv",
+        description: "Convert RGB values to HSV",
+        inputSchema: zodToJsonSchema(color.RGBToHSVSchema),
       },
       {
-        name: "hue_to_rgb",
-        description: "Convert HUE values to RGB",
-        inputSchema: zodToJsonSchema(color.HUEToRGBSchema),
+        name: "hsv_to_rgb",
+        description: "Convert HSV values to RGB",
+        inputSchema: zodToJsonSchema(color.HSVToRGBSchema),
       },
       {
         name: "unix_to_iso",
@@ -124,16 +124,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [{ type: "text", text: response }],
         };
       }
-      case "rgb_to_hue": {
-        const args = color.RGBToHUESchema.parse(request.params.arguments);
-        const response = await color.rgbToHUE(args);
+      case "rgb_to_hsv": {
+        const args = color.RGBToHSVSchema.parse(request.params.arguments);
+        const response = await color.rgbToHSV(args);
         return {
           content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
         };
       }
-      case "hue_to_rgb": {
-        const args = color.HUEToRGBSchema.parse(request.params.arguments);
-        const response = await color.hueToRGB(args);
+      case "hsv_to_rgb": {
+        const args = color.HSVToRGBSchema.parse(request.params.arguments);
+        const response = await color.hsvToRGB(args);
         return {
           content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
         };
