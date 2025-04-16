@@ -18,7 +18,7 @@ import { UUIDGenerateSchema, generateUUID } from "./operations/uuid.js";
 const server = new Server(
   {
     name: "web-development-toolbox-mcp-server",
-    version: "0.2.0",
+    version: "0.3.0",
   },
   {
     capabilities: {
@@ -72,7 +72,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "generate_uuid",
-        description: "Generate a UUID",
+        description: "Generate UUID v4 and v7",
         inputSchema: zodToJsonSchema(UUIDGenerateSchema),
       },
     ],
@@ -146,7 +146,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const args = UUIDGenerateSchema.parse(request.params.arguments);
         const response = await generateUUID(args);
         return {
-          content: [{ type: "text", text: response }],
+          content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
         };
       }
       default:
