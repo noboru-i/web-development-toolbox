@@ -51,6 +51,16 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: zodToJsonSchema(color.RGBToHexSchema),
       },
       {
+        name: "rgb_to_hue",
+        description: "Convert RGB values to HUE",
+        inputSchema: zodToJsonSchema(color.RGBToHUESchema),
+      },
+      {
+        name: "hue_to_rgb",
+        description: "Convert HUE values to RGB",
+        inputSchema: zodToJsonSchema(color.HUEToRGBSchema),
+      },
+      {
         name: "unix_to_iso",
         description: "Convert a Unix timestamp to ISO 8601 format",
         inputSchema: zodToJsonSchema(datetime.UnixToISOSchema),
@@ -112,6 +122,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await color.rgbToHex(args);
         return {
           content: [{ type: "text", text: response }],
+        };
+      }
+      case "rgb_to_hue": {
+        const args = color.RGBToHUESchema.parse(request.params.arguments);
+        const response = await color.rgbToHUE(args);
+        return {
+          content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
+        };
+      }
+      case "hue_to_rgb": {
+        const args = color.HUEToRGBSchema.parse(request.params.arguments);
+        const response = await color.hueToRGB(args);
+        return {
+          content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
         };
       }
       case "unix_to_iso": {

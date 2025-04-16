@@ -66,45 +66,63 @@ This server provides the following tools:
      - `b` (number): Blue value (0-255)
    - Returns: Hexadecimal color code
 
-5. **unix_to_iso**
+5. **rgb_to_hue**
+
+   - Convert RGB values to HUE
+   - Inputs:
+     - `r` (number): Red value (0-255)
+     - `g` (number): Green value (0-255)
+     - `b` (number): Blue value (0-255)
+   - Returns: Object containing HUE values (`h`, `s`, `l`)
+
+6. **hue_to_rgb**
+
+   - Convert HUE values to RGB
+   - Inputs:
+     - `h` (number): Hue value (0-360)
+     - `s` (number): Saturation value (0-100)
+     - `l` (number): Lightness value (0-100)
+   - Returns: Object containing RGB values (`r`, `g`, `b`)
+
+7. **unix_to_iso**
 
    - Convert a Unix timestamp to ISO 8601 format
    - Inputs:
      - `datetime` (number): Unix timestamp
    - Returns: ISO 8601 formatted string
 
-6. **iso_to_unix**
+8. **iso_to_unix**
 
    - Convert an ISO 8601 string to Unix timestamp
    - Inputs:
      - `isoString` (string): ISO 8601 formatted string
    - Returns: Unix timestamp
 
-7. **generate_qr_code**
+9. **generate_qr_code**
 
    - Generate a QR code from a given string
    - Inputs:
      - `text` (string): Text to encode in the QR code
    - Returns: QR code image (data URL)
 
-8. **decode_jwt**
+10. **decode_jwt**
 
-   - Decode a JWT token
-   - Inputs:
-     - `token` (string): JWT token string
-   - Returns:
-     - `header`: Decoded JWT header (object)
-     - `payload`: Decoded JWT payload (object)
-     - `signature`: JWT signature (string or null)
+    - Decode a JWT token
+    - Inputs:
+      - `token` (string): JWT token string
+    - Returns:
+      - `header`: Decoded JWT header (object)
+      - `payload`: Decoded JWT payload (object)
+      - `signature`: JWT signature (string or null)
 
-9. **generate_uuid**
+11. **generate_uuid**
 
-   - Generate UUID v4 and v7
-   - Inputs:
-     - (no parameters required)
-   - Returns: JSON object containing both v4 and v7 UUIDs
-     - `v4`: UUID v4 string
-     - `v7`: UUID v7 string
+    - Generate UUID v4 and v7
+    - Inputs:
+      - (no parameters required)
+    - Returns: JSON object containing both v4 and v7 UUIDs
+      - `v4`: UUID v4 string
+      - `v7`: UUID v7 string
 
 ## License
 
