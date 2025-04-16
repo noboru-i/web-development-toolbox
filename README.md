@@ -88,6 +88,7 @@ This server provides the following tools:
    - Returns: QR code image (data URL)
 
 8. **decode_jwt**
+
    - Decode a JWT token
    - Inputs:
      - `token` (string): JWT token string
@@ -95,6 +96,15 @@ This server provides the following tools:
      - `header`: Decoded JWT header (object)
      - `payload`: Decoded JWT payload (object)
      - `signature`: JWT signature (string or null)
+
+9. **generate_uuid**
+
+   - Generate UUID v4 and v7
+   - Inputs:
+     - (no parameters required)
+   - Returns: JSON object containing both v4 and v7 UUIDs
+     - `v4`: UUID v4 string
+     - `v7`: UUID v7 string
 
 ## License
 
