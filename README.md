@@ -23,7 +23,7 @@ Alternatively, you can create a `.vscode/mcp.json` file in your workspace to sha
   "mcp": {
     "servers": {
       "web-development-toolbox": {
-        "command": "npx",
+        "command": "npx", // It might be necessary to specify the full path. In that case, use the result of `which npx`.
         "args": ["-y", "noboru-i/web-development-toolbox"],
         "env": {}
       }
