@@ -28,13 +28,13 @@
     "@modelcontextprotocol/sdk": "^1.7.0",
     "@types/node": "^22.0.1",
     "@types/node-fetch": "^2.6.12",
+    "canvas": "^3.1.0",
     "node-fetch": "^3.3.2",
     "qr-image": "^3.2.0",
     "universal-user-agent": "^7.0.2",
     "uuid": "^11.1.0",
     "zod": "^3.23.0",
-    "zod-to-json-schema": "^3.24.0",
-    "canvas": "^2.9.0"
+    "zod-to-json-schema": "^3.24.0"
   },
   "devDependencies": {
     "@types/qr-image": "^3.2.9",
