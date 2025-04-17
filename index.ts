@@ -14,6 +14,7 @@ import * as datetime from "./operations/datetime.js";
 import * as qr from "./operations/qr.js";
 import { JWTDecodeOptions, decodeJWT } from "./operations/jwt.js";
 import { UUIDGenerateSchema, generateUUID } from "./operations/uuid.js";
+import { PlaceholderImageOptions, generatePlaceholderImage } from "./operations/image.js";
 
 const server = new Server(
   {
@@ -84,6 +85,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         name: "generate_uuid",
         description: "Generate UUID v4 and v7",
         inputSchema: zodToJsonSchema(UUIDGenerateSchema),
+      },
+      {
+        name: "generate_placeholder_image",
+        description: "Generate a placeholder image with specified dimensions",
+        inputSchema: zodToJsonSchema(PlaceholderImageOptions),
       },
     ],
   };
@@ -171,6 +177,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const response = await generateUUID(args);
         return {
           content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
+        };
+      }
+      case "generate_placeholder_image": {
+        const args = PlaceholderImageOptions.parse(request.params.arguments);
+        const response = await generatePlaceholderImage(args);
+        return {
+          content: [{ type: "image", data: response, mimeType: "image/png" }],
         };
       }
       default:

@@ -124,6 +124,14 @@ This server provides the following tools:
       - `v4`: UUID v4 string
       - `v7`: UUID v7 string
 
+12. **generate_placeholder_image**
+
+    - Generate a placeholder image with specified dimensions
+    - Inputs:
+      - `width` (number): Width of the image in pixels
+      - `height` (number): Height of the image in pixels
+    - Returns: Placeholder image (data URL)
+
 ## License
 
 This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE) for the full terms.
