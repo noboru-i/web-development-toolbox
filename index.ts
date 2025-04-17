@@ -14,12 +14,15 @@ import * as datetime from "./operations/datetime.js";
 import * as qr from "./operations/qr.js";
 import { JWTDecodeOptions, decodeJWT } from "./operations/jwt.js";
 import { UUIDGenerateSchema, generateUUID } from "./operations/uuid.js";
-import { PlaceholderImageOptions, generatePlaceholderImage } from "./operations/image.js";
+import {
+  PlaceholderImageOptions,
+  generatePlaceholderImage,
+} from "./operations/image.js";
 
 const server = new Server(
   {
     name: "web-development-toolbox-mcp-server",
-    version: "0.3.0",
+    version: "0.4.0",
   },
   {
     capabilities: {
