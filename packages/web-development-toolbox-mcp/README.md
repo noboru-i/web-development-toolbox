@@ -138,7 +138,7 @@ This server provides the following tools:
 
 ## Example Usage
 
-Check the [example-project/prompts](../../example-project/prompts/) directory for example prompts for each tool.
+Check the [example-project/prompts](./example-project/prompts/) directory for example prompts for each tool.
 
 ## Development
 

@@ -18,8 +18,8 @@ This is a monorepo containing various tools for web development, such as encodin
 web-development-toolbox/
 ├── packages/
 │   └── web-development-toolbox-mcp/ - MCP server implementation
-├── example-project/
-│   └── prompts/ - Example prompts for different tools
+│       └── example-project/
+│           └── prompts/ - Example prompts for different tools
 └── ... other configuration files
 ```
 
