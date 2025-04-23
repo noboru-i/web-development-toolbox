@@ -1,0 +1,41 @@
+{
+  "name": "web-development-toolbox-mcp",
+  "version": "0.4.0",
+  "description": "Web Development Toolbox MCP Server",
+  "license": "MIT",
+  "author": "noboru-i",
+  "homepage": "https://github.com/noboru-i/web-development-toolbox#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noboru-i/web-development-toolbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noboru-i/web-development-toolbox/issues"
+  },
+  "bin": {
+    "mcp-server-web-development-toolbox": "dist/index.js"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "@types/node": "^22.0.1",
+    "@types/node-fetch": "^2.6.12",
+    "canvas": "^3.1.0",
+    "node-fetch": "^3.3.2",
+    "qr-image": "^3.2.0",
+    "universal-user-agent": "^7.0.2",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.3",
+    "zod-to-json-schema": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/qr-image": "^3.2.9",
+    "@types/uuid": "^10.0.0",
+    "shx": "^0.4.0"
+  }
+}
