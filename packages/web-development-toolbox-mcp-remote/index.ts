@@ -1,10 +1,10 @@
-import express, { Request, Response } from 'express';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import { z } from 'zod';
-import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
-import { zodToJsonSchema } from 'zod-to-json-schema';
+import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import express, { Request, Response } from 'express';
 import { operations } from 'web-development-toolbox-mcp';
+import { z } from 'zod';
+import { zodToJsonSchema } from 'zod-to-json-schema';
 
 const getServer = () => {
     const server = new Server({
