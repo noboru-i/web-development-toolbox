@@ -1,6 +1,6 @@
 {
   "name": "web-development-toolbox-mcp",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Web Development Toolbox MCP Server",
   "license": "MIT",
   "author": "noboru-i",
@@ -17,7 +17,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
