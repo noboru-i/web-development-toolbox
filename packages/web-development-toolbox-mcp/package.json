@@ -1,6 +1,6 @@
 {
   "name": "web-development-toolbox-mcp",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Web Development Toolbox MCP Server",
   "license": "MIT",
   "author": "noboru-i",
@@ -16,6 +16,9 @@
     "mcp-server-web-development-toolbox": "dist/index.js"
   },
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
