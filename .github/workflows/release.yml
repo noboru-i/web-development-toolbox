@@ -24,6 +24,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
+        working-directory: ./packages/web-development-toolbox-mcp
         run: npm ci
 
       - name: Publish MCP package

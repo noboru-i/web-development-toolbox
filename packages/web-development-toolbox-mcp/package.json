@@ -1,6 +1,6 @@
 {
   "name": "web-development-toolbox-mcp",
-  "version": "0.4.0",
+  "version": "0.4.6",
   "description": "Web Development Toolbox MCP Server",
   "license": "MIT",
   "author": "noboru-i",
@@ -13,12 +13,15 @@
     "url": "https://github.com/noboru-i/web-development-toolbox/issues"
   },
   "bin": {
-    "mcp-server-web-development-toolbox": "dist/index.js"
+    "web-development-toolbox-mcp": "dist/index.js"
   },
   "type": "module",
-  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "inspector": "npm run build & npx @modelcontextprotocol/inspector node dist/index.js"
   },
   "dependencies": {
