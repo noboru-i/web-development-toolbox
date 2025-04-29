@@ -16,7 +16,6 @@
     "mcp-server-web-development-toolbox": "dist/index.js"
   },
   "type": "module",
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
