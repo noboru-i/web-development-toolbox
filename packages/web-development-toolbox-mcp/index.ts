@@ -22,7 +22,7 @@ import {
 const server = new Server(
   {
     name: "web-development-toolbox-mcp-server",
-    version: "0.4.4",
+    version: "0.4.5",
   },
   {
     capabilities: {

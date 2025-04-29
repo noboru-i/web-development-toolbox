@@ -1,6 +1,6 @@
 {
   "name": "web-development-toolbox-mcp",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Web Development Toolbox MCP Server",
   "license": "MIT",
   "author": "noboru-i",
@@ -13,7 +13,7 @@
     "url": "https://github.com/noboru-i/web-development-toolbox/issues"
   },
   "bin": {
-    "mcp-server-web-development-toolbox": "dist/index.js"
+    "web-development-toolbox-mcp": "dist/index.js"
   },
   "type": "module",
   "files": [
