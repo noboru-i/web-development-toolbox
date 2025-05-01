@@ -16,6 +16,10 @@
     "web-development-toolbox-mcp": "dist/index.js"
   },
   "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "files": [
     "dist"
   ],

@@ -16,20 +16,24 @@
     "mcp-server-web-development-toolbox-remote": "dist/index.js"
   },
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node dist/index.js",
+    "start_inspector": "npx @modelcontextprotocol/inspector node dist/index.js",
+    "inspector": "npm run build && concurrently \"npm run start_inspector\" \"npm run start\""
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
     "express": "^5.1.0",
+    "web-development-toolbox-mcp": "*",
     "zod": "^3.24.3",
     "zod-to-json-schema": "^3.24.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.3",
+    "concurrently": "^9.1.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }

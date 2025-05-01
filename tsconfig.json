@@ -15,10 +15,7 @@
     "files": [],
     "references": [
         {
-            "path": "./packages/web-development-toolbox-mcp"
-        },
-        {
-            "path": "./packages/web-development-toolbox-mcp-remote"
+            "path": "./packages/*"
         }
     ]
 }
