@@ -62,16 +62,16 @@ app.use(express.json());
 app.post('/mcp', async (req: Request, res: Response) => {
     const server = getServer();
     try {
-        const transport: StreamableHTTPServerTransport = new StreamableHTTPServerTransport({
+        const transport = new StreamableHTTPServerTransport({
             sessionIdGenerator: undefined,
         });
-        await server.connect(transport);
-        await transport.handleRequest(req, res, req.body);
         res.on('close', () => {
             console.log('Request closed');
             transport.close();
             server.close();
         });
+        await server.connect(transport);
+        await transport.handleRequest(req, res, req.body);
     } catch (error) {
         console.error('Error handling MCP request:', error);
         if (!res.headersSent) {
