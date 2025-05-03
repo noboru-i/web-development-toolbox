@@ -19,7 +19,8 @@
   "main": "dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./operations": "./dist/operations/index.js"
+    "./operations": "./dist/operations/index.js",
+    "./server-handlers": "./dist/server-handlers.js"
   },
   "files": [
     "dist"

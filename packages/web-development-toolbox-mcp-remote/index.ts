@@ -1,9 +1,7 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { McpAgent } from "agents/mcp";
-import * as operations from 'web-development-toolbox-mcp/operations';
-import { z } from 'zod';
-import { zodToJsonSchema } from 'zod-to-json-schema';
+import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { getAvailableTools, handleToolCall } from 'web-development-toolbox-mcp/server-handlers';
 
 export class MyMCP extends McpAgent {
     server = new Server({
@@ -20,42 +18,13 @@ export class MyMCP extends McpAgent {
     });
 
     async init() {
-
         this.server.setRequestHandler(ListToolsRequestSchema, async () => {
-            return {
-                tools: [
-                    {
-                        name: "encode_base64",
-                        description: "Encode data to base64 format",
-                        inputSchema: zodToJsonSchema(operations.base64.Base64EncodeSchema),
-                    },
-                ],
-            };
+            const tools = getAvailableTools();
+            return { tools };
         });
 
         this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
-            try {
-                if (!request.params.arguments) {
-                    throw new Error("Arguments are required");
-                }
-                switch (request.params.name) {
-                    case "encode_base64": {
-                        const args = operations.base64.Base64EncodeSchema.parse(request.params.arguments);
-                        const response = await operations.base64.encodeBase64(args);
-                        return {
-                            content: [{ type: "text", text: response }],
-                        };
-                    }
-                    default:
-                        throw new Error(`Unknown tool: ${request.params.name}`);
-                }
-            } catch (error) {
-                console.error("Error in request handler:", error);
-                if (error instanceof z.ZodError) {
-                    throw new Error(`Invalid input: ${JSON.stringify(error.errors)}`);
-                }
-                throw error;
-            }
+            return await handleToolCall(request);
         });
     }
 }
