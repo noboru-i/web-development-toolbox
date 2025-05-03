@@ -18,7 +18,8 @@
   "type": "module",
   "main": "dist/index.js",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./operations": "./dist/operations/index.js"
   },
   "files": [
     "dist"

@@ -12,19 +12,19 @@
   "bugs": {
     "url": "https://github.com/noboru-i/web-development-toolbox/issues"
   },
-  "bin": {
-    "mcp-server-web-development-toolbox-remote": "dist/index.js"
-  },
   "type": "module",
-  "main": "dist/index.js",
+  "main": "index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/index.js",
-    "start_inspector": "npx @modelcontextprotocol/inspector node dist/index.js",
-    "inspector": "npm run build && concurrently \"npm run start_inspector\" \"npm run start\""
+    "start": "wrangler dev",
+    "start_inspector": "npx @modelcontextprotocol/inspector",
+    "inspector": "concurrently \"npm run start_inspector\" \"npm run start\"",
+    "deploy": "wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
+    "agents": "^0.0.76",
     "express": "^5.1.0",
     "web-development-toolbox-mcp": "*",
     "zod": "^3.24.3",
@@ -35,6 +35,7 @@
     "@types/node": "^22.15.3",
     "concurrently": "^9.1.2",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "wrangler": "^4.14.1"
   }
 }
