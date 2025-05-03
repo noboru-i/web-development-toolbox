@@ -24,5 +24,11 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"routes": [
+		{
+			"pattern": "wdt-mcp-remote.noboru.dev",
+			"custom_domain": true
+		}
+	]
 }
