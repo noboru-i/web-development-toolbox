@@ -1,7 +1,9 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { McpAgent } from "agents/mcp";
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { McpAgent } from "agents/mcp";
 import { getAvailableTools, handleToolCall } from 'web-development-toolbox-mcp/server-handlers';
+import { z } from "zod";
+import { generatePlaceholderImage, PlaceholderImageOptions } from './operations/image.js';
 
 export class MyMCP extends McpAgent {
     server = new Server({
@@ -24,7 +26,32 @@ export class MyMCP extends McpAgent {
         });
 
         this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
-            return await handleToolCall(request);
+            {
+                {
+                    try {
+                        if (!request.params.arguments) {
+                            throw new Error("Arguments are required");
+                        }
+
+                        switch (request.params.name) {
+                            case "generate_placeholder_image": {
+                                const args = PlaceholderImageOptions.parse(request.params.arguments);
+                                const response = await generatePlaceholderImage(args);
+                                return {
+                                    content: [{ type: "image", data: response, mimeType: "image/png" }],
+                                };
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Error in request handler:", error);
+                        if (error instanceof z.ZodError) {
+                            throw new Error(`Invalid input: ${JSON.stringify(error.errors)}`);
+                        }
+                        throw error;
+                    }
+                }
+                return await handleToolCall(request);
+            }
         });
     }
 }
