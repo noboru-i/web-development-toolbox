@@ -1,0 +1,8 @@
+{
+    "servers": {
+        "web-development-toolbox": {
+            "type": "sse",
+            "url": "https://wdt-mcp-remote.noboru.dev/sse"
+        },
+    },
+}
