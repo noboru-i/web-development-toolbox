@@ -34,6 +34,7 @@ export class MyMCP extends McpAgent {
                         }
 
                         switch (request.params.name) {
+                            // override for Cloudflare environment
                             case "generate_placeholder_image": {
                                 const args = PlaceholderImageOptions.parse(request.params.arguments);
                                 const response = await generatePlaceholderImage(args);
@@ -61,12 +62,10 @@ export default {
         const url = new URL(request.url);
 
         if (url.pathname === "/sse" || url.pathname === "/sse/message") {
-            // @ts-ignore
             return MyMCP.serveSSE("/sse").fetch(request, env, ctx);
         }
 
         if (url.pathname === "/mcp") {
-            // @ts-ignore
             return MyMCP.serve("/mcp").fetch(request, env, ctx);
         }
 
