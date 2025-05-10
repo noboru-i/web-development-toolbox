@@ -1,8 +1,21 @@
 {
     "servers": {
-        "web-development-toolbox": {
-            "type": "sse",
-            "url": "https://wdt-mcp-remote.noboru.dev/sse"
+        "web-development-toolbox-dev": {
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/../dist/index.js"
+            ]
         },
+        // "web-development-toolbox-released": {
+        //     "command": "npx",
+        //     "args": [
+        //         "-y",
+        //         "web-development-toolbox-mcp"
+        //     ]
+        // },
+        // "web-development-toolbox-remote": {
+        //     "type": "sse",
+        //     "url": "https://wdt-mcp-remote.noboru.dev/sse"
+        // },
     },
 }
