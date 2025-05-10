@@ -2,7 +2,7 @@
 	"$schema": "../../node_modules/wrangler/config-schema.json",
 	"name": "web-development-toolbox-mcp-remote",
 	"main": "index.ts",
-	"compatibility_date": "2025-05-03",
+	"compatibility_date": "2025-04-28",
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
@@ -22,6 +22,12 @@
 			}
 		]
 	},
+	"kv_namespaces": [
+		{
+			"binding": "OAUTH_KV",
+			"id": "8d5fcb90320c4f879e75e4c410917de2"
+		}
+	],
 	"observability": {
 		"enabled": true
 	},
