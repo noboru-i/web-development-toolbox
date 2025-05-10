@@ -1,0 +1,43 @@
+{
+  "name": "web-development-toolbox-mcp-remote",
+  "version": "0.1.0",
+  "description": "",
+  "license": "MIT",
+  "author": "noboru-i",
+  "homepage": "https://github.com/noboru-i/web-development-toolbox#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noboru-i/web-development-toolbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noboru-i/web-development-toolbox/issues"
+  },
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "wrangler dev",
+    "start_inspector": "npx @modelcontextprotocol/inspector",
+    "inspector": "concurrently \"npm run start_inspector\" \"npm run start\"",
+    "deploy": "wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "^0.0.5",
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "agents": "^0.0.76",
+    "hono": "^4.7.8",
+    "octokit": "^4.1.3",
+    "web-development-toolbox-mcp": "*",
+    "workers-og": "^0.0.25",
+    "zod": "^3.24.3",
+    "zod-to-json-schema": "^3.24.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.14.1"
+  }
+}
