@@ -16,12 +16,19 @@
     "web-development-toolbox-mcp": "dist/index.js"
   },
   "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./operations": "./dist/operations/index.js",
+    "./server-handlers": "./dist/server-handlers.js"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "inspector": "npm run build & npx @modelcontextprotocol/inspector node dist/index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
