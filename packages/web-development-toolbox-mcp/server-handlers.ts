@@ -68,6 +68,11 @@ export function getAvailableTools() {
             inputSchema: zodToJsonSchema(qr.QRCodeGenerateSchema),
         },
         {
+            name: "decode_qr_code",
+            description: "Decode a QR code image to extract text",
+            inputSchema: zodToJsonSchema(qr.QRCodeDecodeSchema),
+        },
+        {
             name: "decode_jwt",
             description: "Decode a JWT token",
             inputSchema: zodToJsonSchema(JWTDecodeOptions),
@@ -160,6 +165,13 @@ export async function handleToolCall(request: any) {
                 const response = await qr.generateQRCode(args);
                 return {
                     content: [{ type: "image", data: response, mimeType: "image/png" }],
+                };
+            }
+            case "decode_qr_code": {
+                const args = qr.QRCodeDecodeSchema.parse(request.params.arguments);
+                const response = await qr.decodeQRCode(args);
+                return {
+                    content: [{ type: "text", text: response }],
                 };
             }
             case "decode_jwt": {
