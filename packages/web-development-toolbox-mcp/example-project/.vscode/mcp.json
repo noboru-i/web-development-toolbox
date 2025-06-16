@@ -13,9 +13,5 @@
         //         "web-development-toolbox-mcp"
         //     ]
         // },
-        // "web-development-toolbox-remote": {
-        //     "type": "sse",
-        //     "url": "https://wdt-mcp-remote.noboru.dev/sse"
-        // },
     },
 }

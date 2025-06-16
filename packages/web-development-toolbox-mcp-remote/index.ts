@@ -68,28 +68,7 @@ export class MyMCP extends McpAgent<Props, Env> {
     }
 }
 
-// export default {
-//     fetch(request: Request, env: Env, ctx: ExecutionContext) {
-//         const url = new URL(request.url);
-
-//         if (url.pathname === "/sse" || url.pathname === "/sse/message") {
-//             return MyMCP.serveSSE("/sse").fetch(request, env, ctx);
-//         }
-
-//         if (url.pathname === "/mcp") {
-//             return MyMCP.serve("/mcp").fetch(request, env, ctx);
-//         }
-
-//         return new Response("Not found", { status: 404 });
-//     },
-// };
-
 export default new OAuthProvider({
-    // apiRoute: [
-    //     "/sse",
-    //     "/mcp",
-    // ],
-    // apiHandler: MyMCP.mount("/sse"),
     apiHandlers: {
         "/sse": MyMCP.mount("/sse") as any,
         "/mcp": MyMCP.mount("/mcp") as any,
@@ -98,4 +77,9 @@ export default new OAuthProvider({
     authorizeEndpoint: "/authorize",
     tokenEndpoint: "/token",
     clientRegistrationEndpoint: "/register",
+
+    // ためしに、localhostから書いてみる。
+    // authorizeEndpoint: "http://localhost:8787/authorize",
+    // tokenEndpoint: "http://localhost:8787/token",
+    // clientRegistrationEndpoint: "http://localhost:8787/register",
 });
