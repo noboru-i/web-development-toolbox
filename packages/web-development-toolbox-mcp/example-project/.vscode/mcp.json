@@ -1,0 +1,17 @@
+{
+    "servers": {
+        "web-development-toolbox-dev": {
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/../dist/index.js"
+            ]
+        },
+        // "web-development-toolbox-released": {
+        //     "command": "npx",
+        //     "args": [
+        //         "-y",
+        //         "web-development-toolbox-mcp"
+        //     ]
+        // },
+    },
+}

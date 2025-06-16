@@ -1,0 +1,53 @@
+{
+  "name": "web-development-toolbox-mcp",
+  "version": "0.4.7",
+  "description": "Web Development Toolbox MCP Server",
+  "license": "MIT",
+  "author": "noboru-i",
+  "homepage": "https://github.com/noboru-i/web-development-toolbox#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noboru-i/web-development-toolbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noboru-i/web-development-toolbox/issues"
+  },
+  "bin": {
+    "web-development-toolbox-mcp": "dist/index.js"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./operations": "./dist/operations/index.js",
+    "./server-handlers": "./dist/server-handlers.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "inspector": "npm run build & npx @modelcontextprotocol/inspector node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "@types/node": "^22.0.1",
+    "@types/node-fetch": "^2.6.12",
+    "canvas": "^3.1.0",
+    "jsqr": "^1.4.0",
+    "node-fetch": "^3.3.2",
+    "pngjs": "^7.0.0",
+    "qr-image": "^3.2.0",
+    "universal-user-agent": "^7.0.2",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.3",
+    "zod-to-json-schema": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/pngjs": "^6.0.5",
+    "@types/qr-image": "^3.2.9",
+    "@types/uuid": "^10.0.0",
+    "shx": "^0.4.0"
+  }
+}

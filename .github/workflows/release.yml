@@ -24,9 +24,11 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
+        working-directory: ./packages/web-development-toolbox-mcp
         run: npm ci
 
-      - name: Publish package
+      - name: Publish MCP package
+        working-directory: ./packages/web-development-toolbox-mcp
         run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

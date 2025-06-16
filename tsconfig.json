@@ -8,13 +8,14 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
-        "outDir": "./dist",
-        "rootDir": "."
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true
     },
-    "include": [
-        "./**/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
+    "files": [],
+    "references": [
+        {
+            "path": "./packages/*"
+        }
     ]
 }

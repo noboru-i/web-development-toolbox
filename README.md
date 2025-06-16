@@ -1,76 +1,31 @@
-# Web Development Toolbox MCP Server
+# Web Development Toolbox
 
-[![npm version](https://badge.fury.io/js/web-development-toolbox-mcp-server.svg)](https://badge.fury.io/js/web-development-toolbox-mcp-server)
+[![npm version](https://badge.fury.io/js/web-development-toolbox-mcp.svg)](https://badge.fury.io/js/web-development-toolbox-mcp)
 
-MCP Server for various web development utilities.
+Web development utilities monorepo with MCP Server integration.
 
 ## Overview
 
-This is an MCP server designed to provide various tools for web development, such as encoding, color conversion, date-time manipulation, and QR code generation. It uses the Model Context Protocol SDK to handle requests and responses.
+This is a monorepo containing various tools for web development, such as encoding, color conversion, date-time manipulation, and QR code generation. The main package uses the Model Context Protocol SDK to handle requests and responses.
+
+## Packages
+
+- [**web-development-toolbox-mcp**](./packages/web-development-toolbox-mcp/README.md) - MCP server implementation providing developer tools for encoding, color conversion, date/time handling, and more.
+
+## Project Structure
+
+```
+web-development-toolbox/
+├── packages/
+│   └── web-development-toolbox-mcp/ - MCP server implementation
+│       └── example-project/
+│           └── prompts/ - Example prompts for different tools
+└── ... other configuration files
+```
 
 ## Setup
 
-### Usage with VS Code
-
-Add the following configuration to your User Settings (JSON) file. Open the settings by pressing `Cmd + Shift + P` and selecting `Preferences: Open User Settings (JSON)`.
-
-Alternatively, you can create a `.vscode/mcp.json` file in your workspace to share the configuration with others. Note that the `mcp` key is not needed in the `.vscode/mcp.json` file.
-
-> Note that the `mcp` key is not needed in the `.vscode/mcp.json` file.
-
-```json
-{
-  "mcp": {
-    "servers": {
-      "web-development-toolbox": {
-        "command": "npx",
-        "args": ["-y", "noboru-i/web-development-toolbox"],
-        "env": {}
-      }
-    }
-  }
-}
-```
-
-## Tools
-
-This server provides the following tools:
-
-- **encode_base64** - Encode data to base64 format.
-
-  - Input Schema:
-    - `data`: Input string to encode (string, required)
-
-- **decode_base64** - Decode base64 encoded data.
-
-  - Input Schema:
-    - `data`: Base64 encoded string to decode (string, required)
-
-- **hex_to_rgb** - Convert a hex color code to RGB format.
-
-  - Input Schema:
-    - `hex`: Hexadecimal color code (string, required)
-
-- **rgb_to_hex** - Convert RGB values to a hex color code.
-
-  - Input Schema:
-    - `r`: Red value (number, required)
-    - `g`: Green value (number, required)
-    - `b`: Blue value (number, required)
-
-- **unix_to_iso** - Convert a Unix timestamp to ISO 8601 format.
-
-  - Input Schema:
-    - `timestamp`: Unix timestamp (number, required)
-
-- **iso_to_unix** - Convert an ISO 8601 string to Unix timestamp.
-
-  - Input Schema:
-    - `iso`: ISO 8601 formatted string (string, required)
-
-- **generate_qr_code** - Generate a QR code from a given string.
-  - Input Schema:
-    - `text`: Text to encode in the QR code (string, required)
+For installation and usage instructions, please refer to the README of the specific package you want to use.
 
 - **decode_qr_code** - Decode a QR code image to extract text.
   - Input Schema:

@@ -19,9 +19,7 @@ export async function generateQRCode({
       chunks.push(Buffer.from(chunk));
     }
 
-    const base64String = Buffer.concat(chunks).toString("base64");
-    console.error("base64String is ${base64String}");
-    return base64String;
+    return Buffer.concat(chunks).toString("base64");
   } catch (error) {
     throw new Error(`Failed to generate QR Code: ${(error as Error).message}`);
   }
