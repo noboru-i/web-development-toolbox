@@ -5,6 +5,9 @@ set -e
 
 echo "Building Web Development Toolbox DXT..."
 
+# Store original directory
+ORIGINAL_DIR="$(pwd)"
+
 # Clean and build
 echo "Building TypeScript..."
 npm run build
@@ -34,7 +37,6 @@ echo "DXT file created in: $(pwd)/$DXT_NAME"
 ls -la "$DXT_NAME"
 
 # Move the DXT file back to the original directory
-ORIGINAL_DIR="/home/runner/work/web-development-toolbox/web-development-toolbox/packages/web-development-toolbox-mcp"
 mv "$DXT_NAME" "$ORIGINAL_DIR/"
 
 # Clean up
