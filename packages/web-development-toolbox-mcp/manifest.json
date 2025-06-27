@@ -5,7 +5,7 @@
   "version": "0.4.7",
   "description": "Web development utilities including base64 encoding/decoding, color conversion, datetime operations, QR code generation, JWT decoding, UUID generation, and placeholder image creation",
   "long_description": "Provides tools for:\n\n- **Encoding & Decoding**: Base64 encoding/decoding and JWT token decoding\n- **Color Conversion**: Convert between RGB, HSV, and HEX color formats\n- **Date & Time**: Convert between Unix timestamps and ISO 8601 formats\n- **QR Code Generation**: Create QR codes from text\n- **UUID Generation**: Generate UUID v4 and v7 identifiers\n- **Image Generation**: Create placeholder images with custom dimensions and colors",
-  "icon": "logo.png",
+  "icon": "assets/logo.png",
   "author": {
     "name": "noboru-i",
     "url": "https://github.com/noboru-i"

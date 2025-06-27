@@ -19,7 +19,7 @@ echo "Creating package in: $TMP_DIR"
 # Copy necessary files
 cp -r dist "$TMP_DIR/"
 cp manifest.json "$TMP_DIR/"
-cp -r ../../assets/ "$TMP_DIR/"
+cp -r ../../assets "$TMP_DIR/"
 
 # Create a modified package.json without any scripts to avoid build issues during install
 cat package.json | jq '. | del(.scripts) | del(.devDependencies)' > "$TMP_DIR/package.json"
