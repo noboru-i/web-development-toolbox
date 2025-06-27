@@ -17,7 +17,7 @@ TMP_DIR="$(mktemp -d)"
 echo "Creating package in: $TMP_DIR"
 
 # Copy necessary files
-cp -r dist/ "$TMP_DIR/"
+cp -r dist "$TMP_DIR/"
 cp manifest.json "$TMP_DIR/"
 cp -r ../../assets/ "$TMP_DIR/"
 
@@ -29,17 +29,23 @@ cd "$TMP_DIR"
 echo "Installing production dependencies..."
 npm install --silent 2>/dev/null || npm install
 
-# Create the DXT file manually using zip
-echo "Creating DXT package..."
 VERSION=$(cat package.json | jq -r '.version')
 DXT_NAME="web-development-toolbox-mcp-$VERSION.dxt"
-zip -r "$DXT_NAME" . >/dev/null
 
-echo "DXT file created in: $(pwd)/$DXT_NAME"
-ls -la "$DXT_NAME"
+# Create the DXT file using dxt pack command
+echo "Creating DXT package..."
+npx @anthropic-ai/dxt pack . "$DXT_NAME"
 
-# Move the DXT file back to the original directory
-mv "$DXT_NAME" "$ORIGINAL_DIR/"
+# Find the created DXT file and move it to the original directory
+DXT_FILE=$(find . -name "*.dxt" -type f | head -n 1)
+if [ -n "$DXT_FILE" ]; then
+    echo "DXT file created: $DXT_FILE"
+    ls -la "$DXT_FILE"
+    mv "$DXT_FILE" "$ORIGINAL_DIR/"
+else
+    echo "Error: No DXT file was created"
+    exit 1
+fi
 
 # Clean up
 cd "$ORIGINAL_DIR"
