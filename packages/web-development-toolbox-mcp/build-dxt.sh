@@ -31,7 +31,8 @@ npm install --silent 2>/dev/null || npm install
 
 # Create the DXT file manually using zip
 echo "Creating DXT package..."
-DXT_NAME="web-development-toolbox-mcp-0.4.7.dxt"
+VERSION=$(cat package.json | jq -r '.version')
+DXT_NAME="web-development-toolbox-mcp-$VERSION.dxt"
 zip -r "$DXT_NAME" . >/dev/null
 
 echo "DXT file created in: $(pwd)/$DXT_NAME"
