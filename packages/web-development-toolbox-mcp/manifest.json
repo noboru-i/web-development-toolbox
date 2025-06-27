@@ -1,0 +1,98 @@
+{
+  "dxt_version": "0.1",
+  "name": "web-development-toolbox-mcp",
+  "display_name": "Web Development Toolbox MCP Server",
+  "version": "0.4.7",
+  "description": "MCP server implementation providing various utility tools for web development including base64 encoding/decoding, color conversion, datetime operations, QR code generation, JWT decoding, UUID generation, and placeholder image creation",
+  "long_description": "This Desktop Extension provides a comprehensive set of web development utilities through an MCP server. It includes tools for:\n\n- **Encoding & Decoding**: Base64 encoding/decoding and JWT token decoding\n- **Color Conversion**: Convert between RGB, HSV, and HEX color formats\n- **Date & Time**: Convert between Unix timestamps and ISO 8601 formats\n- **QR Code Generation**: Create QR codes from text\n- **UUID Generation**: Generate UUID v4 and v7 identifiers\n- **Image Generation**: Create placeholder images with custom dimensions and colors\n\nAll tools include proper input validation and consistent JSON responses. The extension runs locally with no external dependencies required.",
+  "author": {
+    "name": "noboru-i",
+    "url": "https://github.com/noboru-i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noboru-i/web-development-toolbox"
+  },
+  "homepage": "https://github.com/noboru-i/web-development-toolbox#readme",
+  "documentation": "https://github.com/noboru-i/web-development-toolbox/blob/main/packages/web-development-toolbox-mcp/README.md",
+  "support": "https://github.com/noboru-i/web-development-toolbox/issues",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
+      "env": {}
+    }
+  },
+  "tools": [
+    {
+      "name": "encode_base64",
+      "description": "Encode data to base64 format"
+    },
+    {
+      "name": "decode_base64",
+      "description": "Decode base64 encoded data"
+    },
+    {
+      "name": "hex_to_rgb",
+      "description": "Convert a hex color code to RGB format"
+    },
+    {
+      "name": "rgb_to_hex",
+      "description": "Convert RGB values to a hex color code"
+    },
+    {
+      "name": "rgb_to_hsv",
+      "description": "Convert RGB values to HSV"
+    },
+    {
+      "name": "hsv_to_rgb",
+      "description": "Convert HSV values to RGB"
+    },
+    {
+      "name": "unix_to_iso",
+      "description": "Convert a Unix timestamp to ISO 8601 format"
+    },
+    {
+      "name": "iso_to_unix",
+      "description": "Convert an ISO 8601 string to Unix timestamp"
+    },
+    {
+      "name": "generate_qr_code",
+      "description": "Generate a QR code from a given string"
+    },
+    {
+      "name": "decode_jwt",
+      "description": "Decode a JWT token"
+    },
+    {
+      "name": "generate_uuid",
+      "description": "Generate UUID v4 and v7"
+    },
+    {
+      "name": "generate_placeholder_image",
+      "description": "Generate a placeholder image with specified dimensions"
+    }
+  ],
+  "keywords": [
+    "mcp",
+    "web-development",
+    "base64",
+    "color-conversion",
+    "qr-code",
+    "jwt",
+    "uuid",
+    "datetime",
+    "image-generation",
+    "utilities"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=16.0.0"
+    }
+  }
+}

@@ -6,6 +6,14 @@ MCP (Model Context Protocol) server implementation providing various utility too
 
 ## Setup
 
+### Desktop Extension (DXT) - Recommended
+
+The easiest way to install this MCP server is using the Desktop Extension format:
+
+1. Download the latest `.dxt` file from the [Releases page](https://github.com/noboru-i/web-development-toolbox/releases)
+2. Double-click the `.dxt` file to install with Claude Desktop or other DXT-compatible applications
+3. The extension will be automatically configured and ready to use
+
 ### Usage with VS Code
 
 Add the following configuration to your User Settings (JSON) file. Open the settings by pressing `Cmd + Shift + P` and selecting `Preferences: Open User Settings (JSON)`.
@@ -151,6 +159,20 @@ npm install
 # Build the project
 npm run build
 ```
+
+### Building the Desktop Extension (DXT)
+
+To create a `.dxt` file for distribution:
+
+```bash
+# Install dependencies
+npm install
+
+# Build the DXT package
+npm run build-dxt
+```
+
+This will create a `web-development-toolbox-mcp-<version>.dxt` file that can be installed with Claude Desktop or other DXT-compatible applications.
 
 ## License
 

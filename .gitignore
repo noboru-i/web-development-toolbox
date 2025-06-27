@@ -147,3 +147,6 @@ dist
 
 .dev.vars
 .wrangler/
+
+# DXT build artifacts
+*.dxt

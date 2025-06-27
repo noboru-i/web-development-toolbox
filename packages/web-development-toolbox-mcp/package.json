@@ -27,8 +27,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build",
-    "inspector": "npm run build & npx @modelcontextprotocol/inspector node dist/index.js"
+    "inspector": "npm run build & npx @modelcontextprotocol/inspector node dist/index.js",
+    "build-dxt": "./build-dxt.sh",
+    "clean": "rm -rf dist node_modules package-lock.json"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
