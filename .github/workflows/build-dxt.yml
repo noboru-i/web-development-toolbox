@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4.3.0
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
@@ -42,44 +42,11 @@ jobs:
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       - name: Create release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
-          body: |
-            ## Web Development Toolbox DXT Release
-
-            This release includes the Desktop Extension (DXT) package for the Web Development Toolbox MCP Server.
-
-            ### Features
-            - Base64 encoding/decoding
-            - Color conversion (RGB, HSV, HEX)
-            - Date & time operations (Unix timestamp ↔ ISO 8601)
-            - QR code generation
-            - JWT token decoding
-            - UUID generation (v4 and v7)
-            - Placeholder image creation
-
-            ### Installation
-            1. Download the `.dxt` file from the assets below
-            2. Double-click to install with Claude Desktop (or other DXT-compatible applications)
-
-            ### Manual Installation
-            For applications that support MCP configuration, add the following to your settings:
-            ```json
-            {
-              "mcp": {
-                "servers": {
-                  "web-development-toolbox": {
-                    "command": "npx",
-                    "args": ["-y", "web-development-toolbox-mcp"],
-                    "env": {}
-                  }
-                }
-              }
-            }
-            ```
-          files: |
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$tag" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="$tag" \
             ./packages/web-development-toolbox-mcp/web-development-toolbox-mcp-${{ steps.package-version.outputs.version }}.dxt
-          draft: false
-          prerelease: false
