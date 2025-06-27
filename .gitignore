@@ -150,3 +150,6 @@ dist
 
 # https://docs.anthropic.com/en/docs/claude-code/settings
 .claude/settings.local.json
+
+# DXT build artifacts
+*.dxt

@@ -1,0 +1,52 @@
+name: Build and Release DXT
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+jobs:
+  build-dxt:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.3.0
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install DXT CLI
+        run: npm install -g @anthropic-ai/dxt
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Build DXT
+        working-directory: ./packages/web-development-toolbox-mcp
+        run: npm run build-dxt
+
+      - name: Get package version
+        id: package-version
+        working-directory: ./packages/web-development-toolbox-mcp
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$tag" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="$tag" \
+            ./packages/web-development-toolbox-mcp/web-development-toolbox-mcp-${{ steps.package-version.outputs.version }}.dxt
