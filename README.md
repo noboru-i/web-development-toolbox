@@ -27,6 +27,10 @@ web-development-toolbox/
 
 For installation and usage instructions, please refer to the README of the specific package you want to use.
 
+- **decode_qr_code** - Decode a QR code image to extract text.
+  - Input Schema:
+    - `imageData`: Base64 encoded image data of the QR code (string, required)
+
 ## License
 
 This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE) for the full terms.
