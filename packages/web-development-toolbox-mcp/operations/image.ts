@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createCanvas } from "canvas";
+import { createCanvas } from "@napi-rs/canvas";
 
 const PlaceholderImageOptions = z.object({
   width: z

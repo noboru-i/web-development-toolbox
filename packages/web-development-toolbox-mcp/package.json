@@ -1,6 +1,6 @@
 {
   "name": "web-development-toolbox-mcp",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Web Development Toolbox MCP Server",
   "license": "MIT",
   "author": "noboru-i",
@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "inspector": "npm run build & npx @modelcontextprotocol/inspector node dist/index.js",
+    "inspector": "npm run build & DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector node dist/index.js",
     "build-dxt": "./build-dxt.sh",
     "clean": "rm -rf dist node_modules package-lock.json"
   },
@@ -35,7 +35,7 @@
     "@modelcontextprotocol/sdk": "^1.10.2",
     "@types/node": "^22.0.1",
     "@types/node-fetch": "^2.6.12",
-    "canvas": "^3.1.0",
+    "@napi-rs/canvas": "^0.1.59",
     "node-fetch": "^3.3.2",
     "qr-image": "^3.2.0",
     "universal-user-agent": "^7.0.2",
