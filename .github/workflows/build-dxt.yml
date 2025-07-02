@@ -24,7 +24,8 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        working-directory: ./packages/web-development-toolbox-mcp
+        run: npm ci
 
       - name: Install DXT CLI
         run: npm install -g @anthropic-ai/dxt
